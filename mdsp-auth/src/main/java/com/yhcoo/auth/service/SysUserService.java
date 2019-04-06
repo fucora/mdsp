@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  */
 @FeignClient(name = "mdsp-upms-service", fallback = SysUserServiceFallback.class,configuration = SysUserService.UserFeignConfig.class)
-
 public interface SysUserService {
 
     /**

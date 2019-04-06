@@ -271,6 +271,7 @@ public class GenUtil {
         map.put("tableInfo", tableConfig);
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("datetime", now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        map.put("moduleName", toLowerCaseFirstOne(buildConfigDTO.getModuleName()));
         map.put("secondModuleName", toLowerCaseFirstOne(tableConfig.getClassName()));
         VelocityContext context = new VelocityContext(map);
 
