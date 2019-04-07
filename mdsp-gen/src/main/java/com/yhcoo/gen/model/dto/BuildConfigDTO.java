@@ -23,71 +23,18 @@ public class BuildConfigDTO {
     private String moduleName;
 
     /**
-     * 包名
+     * 子项目名
      */
-    private String entityPackageName;
+    private String subProjectName;
 
     /**
-     * query类的包名
+     * 子项目名
      */
-    private String queryPackageName;
-
-    /**
-     * service类包名
-     */
-    private String servicePackageName;
-
-    /**
-     * serviceApi类包名
-     */
-    private String serviceApiPackageName;
-
-    /**
-     * dao的包名
-     */
-    private String daoPackageName;
-
-    /**
-     * mapper类包名
-     */
-    private String mapperPackageName;
-
-    /**
-     * controller类包名
-     */
-    private String controllerPackageName;
+    private String vueProjecePath;
 
     /**
      * 作者名称
      */
     private String authorName;
 
-
-    public String getEntityPackageName() {
-        return getPackageName() + "." + getModuleName() + ".model.entity";
-    }
-
-    public String getQueryPackageName() {
-        return getPackageName() + "." + getModuleName() + ".model.query";
-    }
-
-    public String getServicePackageName() {
-        return getPackageName() + "." + getModuleName() + ".service";
-    }
-
-    public String getServiceApiPackageName() {
-        return getPackageName() + "." + getModuleName() + ".api";
-    }
-
-    public String getDaoPackageName() {
-        return getPackageName() + "." + getModuleName() + ".dao";
-    }
-
-    public String getMapperPackageName() {
-        return getPackageName() + "." + getModuleName() + ".mapper";
-    }
-
-    public String getControllerPackageName() {
-        return getPackageName() + "." + getModuleName() + ".controller";
-    }
 }

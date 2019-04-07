@@ -1,5 +1,6 @@
 package com.yhcoo.common.base.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yhcoo.common.base.service.BaseService;
 import com.yhcoo.common.util.ApiResult;
@@ -44,6 +45,7 @@ public class BaseController<K extends BaseService<T>, T, P extends Serializable>
     @ApiOperation(value = "分页查询", notes = "分页查询", httpMethod = "GET")
     @GetMapping("/page")
     public ApiResult<IPage<T>> pageByQuery(IPage<T> sysRoleQuery){
+        IPage<T> re2 = baseService.pageByQuery(sysRoleQuery);
         return new ApiResult<>(baseService.pageByQuery(sysRoleQuery));
     }
 

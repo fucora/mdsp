@@ -1,6 +1,6 @@
 package $tableInfo.mapperPackageName;
 
-import ${tableInfo.packageName}.${tableInfo.className};
+import ${tableInfo.entityPackageName}.${tableInfo.className};
 import com.yhcoo.common.base.mapper.BaseMapper;
 
 

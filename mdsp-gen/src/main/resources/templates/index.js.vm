@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function page(query) {
   return request({
-    url: '/api/${moduleName}/${secondModuleName}/page',
+    url: '/${moduleName}/${secondModuleName}/page',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function page(query) {
 
 export function addObj(obj) {
   return request({
-    url: '/api/${moduleName}/${secondModuleName}',
+    url: '/${moduleName}/${secondModuleName}',
     method: 'post',
     data: obj
   })
@@ -18,21 +18,21 @@ export function addObj(obj) {
 
 export function getObj(id) {
   return request({
-    url: '/api/${moduleName}/${secondModuleName}/' + id,
+    url: '/${moduleName}/${secondModuleName}/' + id,
     method: 'get'
   })
 }
 
 export function delObj(id) {
   return request({
-    url: '/api/${moduleName}/${secondModuleName}/' + id,
+    url: '/${moduleName}/${secondModuleName}/' + id,
     method: 'delete'
   })
 }
 
 export function putObj(id, obj) {
   return request({
-    url: '/api/${moduleName}/${secondModuleName}/' + id,
+    url: '/${moduleName}/${secondModuleName}/' + id,
     method: 'put',
     data: obj
   })

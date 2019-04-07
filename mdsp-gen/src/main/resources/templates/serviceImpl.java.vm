@@ -2,7 +2,7 @@ package ${tableInfo.servicePackageName}.impl;
 
 import com.yhcoo.common.base.service.impl.BaseServiceImpl;
 import ${tableInfo.mapperPackageName}.${tableInfo.className}Mapper;
-import ${tableInfo.packageName}.${tableInfo.className};
+import ${tableInfo.entityPackageName}.${tableInfo.className};
 import ${tableInfo.servicePackageName}.${tableInfo.className}Service;
 import org.springframework.stereotype.Service;
 

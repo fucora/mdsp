@@ -3,41 +3,41 @@
     <div class="filter-container">
       <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="姓名或账户" v-model="listQuery.name"> </el-input>
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-      <el-button class="filter-item" v-if="${secondModuleName}Manager_btn_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+      <el-button class="filter-item" v-if="${underlineModuleName}_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
     </div>
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
 
       #foreach($column in $columns)
         #if($column.columnName == $pk.columnName)
           <el-table-column align="center" label="${column.columnName}" width="65">
-            <template scope="scope">
-              <span>{{scope.row.${column.attrname}}}</span>
+            <template slot-scope="scope">
+              <span>{{scope.row.${column.attrName}}}</span>
             </template>
           </el-table-column>
         #else
-          <el-table-column width="200px" align="center" label="${column.comments}">
-            <template scope="scope">
-              <span>{{scope.row.${column.attrname}}}</span>
+          <el-table-column width="200px" align="center" label="${column.columnComment}">
+            <template slot-scope="scope">
+              <span>{{scope.row.${column.attrName}}}</span>
             </template>
           </el-table-column>
         #end
       #end
-      <el-table-column fixed="right" align="center" label="操作" width="150"> <template scope="scope">
-        <el-button v-if="${secondModuleName}Manager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">编辑
+      <el-table-column fixed="right" align="center" label="操作" width="150"> <template slot-scope="scope">
+        <el-button v-if="${underlineModuleName}_update" size="small" type="success" @click="handleUpdate(scope.row)">编辑
         </el-button>
-        <el-button v-if="${secondModuleName}Manager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">删除
+        <el-button v-if="${underlineModuleName}_delete" size="small" type="danger" @click="handleDelete(scope.row)">删除
         </el-button>
       </template> </el-table-column>
     </el-table>
     <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.current" :page-sizes="[10,20,30, 50]" :page-size="listQuery.size" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
     </div>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px">
         #foreach($column in $columns)
           #if($column.columnName != $pk.columnName)
-            <el-form-item label="${column.comments}" prop="${column.attrname}">
-              <el-input v-model="form.${column.attrname}" placeholder="请输入${column.comments}"></el-input>
+            <el-form-item label="${column.columnComment}" prop="${column.attrName}">
+              <el-input v-model="form.${column.attrName}" placeholder="请输入${column.columnComment}"></el-input>
             </el-form-item>
           #end
         #end
@@ -58,8 +58,8 @@
     getObj,
     delObj,
     putObj
-  } from '@/api/${moduleName}/${secondModuleName}/index';
-  import { mapGetters } from 'vuex';
+  } from '@/api/${moduleName}/${secondModuleName}'
+  import { mapGetters } from 'vuex'
   export default {
     name: '${secondModuleName}',
     data() {
@@ -67,17 +67,17 @@
         form: {
       #foreach($column in $columns)
         #if($column.columnName != $pk.columnName)
-          ${column.attrname} : undefined#if($velocityCount != $columns.size()),#end
+          ${column.attrName}: ''#if($foreach.count != $columns.size()),#end /** ${column.columnComment}*/
         #end
       #end
-    },
-      rules: {
+        },
+        rules: {
         #foreach($column in $columns)
           #if($column.columnName != $pk.columnName)
-            ${column.attrname}: [
+          ${column.attrName}: [
             {
               required: true,
-              message: '请输入${column.comments}',
+              message: '请输入${column.columnComment}',
               trigger: 'blur'
             },
             {
@@ -86,34 +86,36 @@
               message: '长度在 3 到 20 个字符',
               trigger: 'blur'
             }
-          ]#if($velocityCount != $columns.size()), #end#end
+          ]#if($foreach.count != $columns.size()),#end //
+          #end
         #end
-      },
-      list: null,
-              total: null,
-              listLoading: true,
-              listQuery: {
-        page: 1,
-                limit: 20,
-                name: undefined
-      },
-      dialogFormVisible: false,
-              dialogStatus: '',
-                ${secondModuleName}Manager_btn_edit: false,
-                ${secondModuleName}Manager_btn_del: false,
-                ${secondModuleName}Manager_btn_add: false,
-              textMap: {
+        },
+        list: null,
+        total: null,
+        listLoading: true,
+        listQuery: {
+        current: 1,
+        size: 20,
+        name: undefined
+        },
+        dialogFormVisible: false,
+        dialogStatus: '',
+        ${underlineModuleName}_update: false,
+        ${underlineModuleName}_delete: false,
+        ${underlineModuleName}_add: false,
+        textMap: {
         update: '编辑',
-                create: '创建'
-      },
-      tableKey: 0
-    }
+        create: '创建'
+        },
+        tableKey: 0
+      }
     },
-    created() {
-      this.getList();
-      this.${secondModuleName}Manager_btn_edit = this.elements['${secondModuleName}Manager:btn_edit'];
-      this.${secondModuleName}Manager_btn_del = this.elements['${secondModuleName}Manager:btn_del'];
-      this.${secondModuleName}Manager_btn_add = this.elements['${secondModuleName}Manager:btn_add'];
+    mounted() {
+      this.getList()
+      this.${underlineModuleName}_add = this.permissions['${underlineModuleName}_add']
+      this.${underlineModuleName}_update = this.permissions['${underlineModuleName}_update']
+      this.${underlineModuleName}_delete = this.permissions['${underlineModuleName}_delete']
+      this.${underlineModuleName}_select = this.permissions['${underlineModuleName}_select']
     },
     computed: {
       ...mapGetters([
@@ -124,35 +126,35 @@
       getList() {
         this.listLoading = true;
         page(this.listQuery)
-                .then(response => {
-          this.list = response.data.rows;
-        this.total = response.data.total;
-        this.listLoading = false;
-      })
+        .then(response => {
+        this.list = response.data.rows
+        this.total = response.data.total
+        this.listLoading = false
+        })
       },
       handleFilter() {
-        this.getList();
+        this.getList()
       },
       handleSizeChange(val) {
-        this.listQuery.limit = val;
-        this.getList();
+        this.listQuery.size = val
+        this.getList()
       },
       handleCurrentChange(val) {
-        this.listQuery.page = val;
-        this.getList();
+        this.listQuery.current = val
+        this.getList()
       },
       handleCreate() {
         this.resetTemp();
-        this.dialogStatus = 'create';
-        this.dialogFormVisible = true;
+        this.dialogStatus = 'create'
+        this.dialogFormVisible = true
       },
       handleUpdate(row) {
         getObj(row.id)
-                .then(response => {
-          this.form = response.data;
-        this.dialogFormVisible = true;
-        this.dialogStatus = 'update';
-      });
+        .then(response => {
+        this.form = response.data
+        this.dialogFormVisible = true
+        this.dialogStatus = 'update'
+      })
       },
       handleDelete(row) {
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
@@ -160,7 +162,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         })
-                .then(() => {
+          .then(() => {
           delObj(row.id)
       .then(() => {
           this.$notify({
@@ -178,11 +180,10 @@
         const set = this.$refs;
         set[formName].validate(valid => {
           if (valid) {
-            addObj(this.form)
-                    .then(() => {
-              this.dialogFormVisible = false;
-            this.getList();
-            this.$notify({
+            addObj(this.form).then(() => {
+              this.dialogFormVisible = false
+              this.getList();
+              this.$notify({
               title: '成功',
               message: '创建成功',
               type: 'success',
@@ -191,8 +192,8 @@
           })
           } else {
             return false;
-      }
-      });
+          }
+        });
       },
       cancel(formName) {
         this.dialogFormVisible = false;
@@ -217,8 +218,8 @@
           });
           } else {
             return false;
-      }
-      });
+          }
+        });
       },
       resetTemp() {
         this.form = {

@@ -11,38 +11,52 @@ public class BaseConfig {
     private String packageName;
 
     /**
-     * query类的包名
+     * 模块名
      */
-    private String queryPackageName;
+    private String moduleName;
 
     /**
-     * mapper类包名
+     * 子项目名
      */
-    private String mapperPackageName;
+    private String subProjectName;
 
     /**
-     * controller类包名
+     * 子项目名
      */
-    private String controllerPackageName;
-
-    /**
-     * service类包名
-     */
-    private String servicePackageName;
-
-    /**
-     * serviceApi类包名
-     */
-    private String serviceApiPackageName;
-
-    /**
-     * dao的包名
-     */
-    private String daoPackageName;
+    private String vueProjecePath;
 
     /**
      * 作者名称
      */
     private String authorName;
+
+
+    public String getEntityPackageName() {
+        return getPackageName() + ".model.entity";
+    }
+
+    public String getQueryPackageName() {
+        return getPackageName() + ".model.query";
+    }
+
+    public String getServicePackageName() {
+        return getPackageName() + ".service";
+    }
+
+    public String getServiceApiPackageName() {
+        return getPackageName() + ".api";
+    }
+
+    public String getDaoPackageName() {
+        return getPackageName() + ".dao";
+    }
+
+    public String getMapperPackageName() {
+        return getPackageName() + ".mapper";
+    }
+
+    public String getControllerPackageName() {
+        return getPackageName() + ".controller";
+    }
 
 }

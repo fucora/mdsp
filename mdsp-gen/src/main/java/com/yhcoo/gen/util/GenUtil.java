@@ -1,5 +1,6 @@
 package com.yhcoo.gen.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.yhcoo.gen.model.config.ColumnInfoConfig;
 import com.yhcoo.gen.model.config.TableInfoConfig;
 import com.yhcoo.gen.model.dto.BuildConfigDTO;
@@ -16,6 +17,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.springframework.beans.BeanUtils;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
@@ -41,6 +43,7 @@ public class GenUtil {
             templates.add("templates/controller.java.vm");
             templates.add("templates/index.js.vm");
             templates.add("templates/index.vue.vm");
+            templates.add("templates/menu.sql.vm");
         }
         return templates;
     }
@@ -60,8 +63,7 @@ public class GenUtil {
         TableInfoConfig tableConfig = new TableInfoConfig();
 
         //  配置 包名等配置
-        buildTableConfig(buildConfigDTO ,config, tableConfig);
-
+        buildTableConfig(buildConfigDTO, tableConfig);
 
         BeanUtils.copyProperties(tableInfo, tableConfig);
 
@@ -106,57 +108,63 @@ public class GenUtil {
     /**
      * 获取文件名
      */
-    public static String getFileName(String template,TableInfoConfig tableInfoConfig) {
-        String packagePath = "main" + File.separator + "java" + File.separator
-                + tableInfoConfig.getPackageName().replace(".", File.separator);
-        String frontPath = "ui" + File.separator;
-        String resourcesPath = "main" + File.separator + "resources";
+    public static String getFileName(String template,BuildConfigDTO buildConfigDTO,TableInfoConfig tableInfoConfig) {
+
+        String sep = File.separator;
+
+        String sqlPath = StringUtils.isNotBlank(buildConfigDTO.getSubProjectName())
+            ? buildConfigDTO.getSubProjectName() + sep + "docs" +  sep + "sql" + sep
+            : "tmp" + sep + "docs" +  sep + "sql"  + sep;
+
+        String mainPath = StringUtils.isNotBlank(buildConfigDTO.getSubProjectName())
+            ? buildConfigDTO.getSubProjectName() + sep + "src" +  sep + "main" + sep
+            : "tmp" + sep + "src" +  sep + "main"  + sep;
+
+        String javaPath = mainPath + "java" + sep;
+        String resourcesPath = mainPath + "resources";
+
+        String frontPath = StringUtils.isNotBlank(buildConfigDTO.getVueProjecePath()) ?
+            buildConfigDTO.getVueProjecePath() + sep + "src" +  sep :
+            getRootPath() +  sep + "mdsp-console" + sep + "src" +  sep;
+
+
         String className = tableInfoConfig.getClassName();
         if (template.contains("templates/index.js.vm")) {
-            return frontPath + "api" + File.separator + tableInfoConfig.getClassName() + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
+            return frontPath + "api" + sep + buildConfigDTO.getModuleName() + sep + toLowerCaseFirstOne(className) + ".js";
         }
 
         if (template.contains("templates/index.vue.vm")) {
-            return frontPath + "views" + File.separator + tableInfoConfig.getClassName() + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.vue";
+            return frontPath + "views" + sep + buildConfigDTO.getModuleName() + sep + toLowerCaseFirstOne(className) + sep + "index.vue";
         }
 
         if (template.contains("templates/Entity.java.vm")) {
-            return packagePath + File.separator + className
-                    + ".java";
+            return javaPath + tableInfoConfig.getEntityPackageName().replace(".", sep) + sep + className + ".java";
         }
         if (template.contains("templates/query.java.vm")) {
-            String path = "main" + File.separator + "java" + File.separator
-                    + tableInfoConfig.getQueryPackageName().replace(".", File.separator);
-            return path + File.separator + className
-                    + "Query.java";
+            String path = javaPath + tableInfoConfig.getQueryPackageName().replace(".", sep);
+            return path + sep + className + "Query.java";
         }
         if (template.contains("templates/Mapper.java.vm")) {
-            String path = "main" + File.separator + "java" + File.separator
-                    + tableInfoConfig.getMapperPackageName().replace(".", File.separator);
-            return path + File.separator + className
-                    + "Mapper.java";
+            String path = javaPath + tableInfoConfig.getMapperPackageName().replace(".", sep);
+            return path + sep + className + "Mapper.java";
         }
         if (template.contains("templates/service.java.vm")) {
-            String path = "main" + File.separator + "java" + File.separator
-                    + tableInfoConfig.getServicePackageName().replace(".", File.separator);
-            return path + File.separator + className
-                    + "Service.java";
+            String path = javaPath + tableInfoConfig.getServicePackageName().replace(".", sep);
+            return path + sep + className + "Service.java";
         }
         if (template.contains("templates/serviceImpl.java.vm")) {
-            String path = "main" + File.separator + "java" + File.separator
-                    + tableInfoConfig.getServicePackageName().replace(".", File.separator);
-            return path + File.separator + "impl" + File.separator + className
-                    + "ServiceImpl.java";
+            String path = javaPath + tableInfoConfig.getServicePackageName().replace(".", sep);
+            return path + sep + "impl" + sep + className + "ServiceImpl.java";
         }
         if (template.contains("templates/controller.java.vm")) {
-            String path = "main" + File.separator + "java" + File.separator
-                    + tableInfoConfig.getControllerPackageName().replace(".", File.separator);
-            return path + File.separator + className
-                    + "Controller.java";
+            String path = javaPath + tableInfoConfig.getControllerPackageName().replace(".", sep);
+            return path + sep + className + "Controller.java";
         }
         if (template.contains("templates/Mapper.xml.vm")) {
-            return resourcesPath + File.separator+  "mapper" + File.separator+ className
-                    + "Mapper.xml";
+            return resourcesPath + sep+  "mapper" + sep+ className + "Mapper.xml";
+        }
+        if (template.contains("templates/menu.sql.vm")) {
+            return sqlPath + "menu.sql.vm";
         }
         return null;
     }
@@ -164,46 +172,10 @@ public class GenUtil {
     /**
      * 构建表配置信息  包名等
      * @param buildConfigDTO
-     * @param configuration
      * @param tableInfoConfig
      */
-    public static void buildTableConfig(BuildConfigDTO buildConfigDTO,Configuration configuration,TableInfoConfig tableInfoConfig) {
-
+    public static void buildTableConfig(BuildConfigDTO buildConfigDTO,TableInfoConfig tableInfoConfig) {
         BeanUtils.copyProperties(buildConfigDTO, tableInfoConfig);
-
-        if(StringUtils.isEmpty(tableInfoConfig.getPackageName())) {
-            tableInfoConfig.setPackageName(configuration.getString("packageName", "com.yhcoo.gen.model.entity"));
-
-        }
-        if(StringUtils.isEmpty(tableInfoConfig.getDaoPackageName())) {
-            tableInfoConfig.setDaoPackageName(configuration.getString("daoPackageName", "com.yhcoo.gen.mapper"));
-
-        }
-        if(StringUtils.isEmpty(tableInfoConfig.getControllerPackageName())) {
-            tableInfoConfig.setDaoPackageName(configuration.getString("controllerPackageName", "com.yhcoo.gen.controller"));
-
-        }
-        if(StringUtils.isEmpty(tableInfoConfig.getMapperPackageName())) {
-            tableInfoConfig.setDaoPackageName(configuration.getString("mapperPackageName", "com.yhcoo.gen.mapper"));
-
-        }
-
-        if(StringUtils.isEmpty(tableInfoConfig.getAuthorName())) {
-            tableInfoConfig.setAuthorName(configuration.getString("authorName", "Allen"));
-        }
-
-        if(StringUtils.isEmpty(tableInfoConfig.getServiceApiPackageName())) {
-            tableInfoConfig.setServiceApiPackageName(configuration.getString("serviceApiPackageName", "com.yhcoo.gen.service.api"));
-        }
-
-        if(StringUtils.isEmpty(tableInfoConfig.getServicePackageName())) {
-            tableInfoConfig.setServicePackageName(configuration.getString("servicePackageName", "com.yhcoo.gen.service"));
-        }
-
-        if(StringUtils.isEmpty(tableInfoConfig.getQueryPackageName())) {
-            tableInfoConfig.setQueryPackageName(configuration.getString("queryPackageName", "com.yhcoo.gen.mapper"));
-        }
-
     }
 
     /**
@@ -271,8 +243,10 @@ public class GenUtil {
         map.put("tableInfo", tableConfig);
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("datetime", now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        map.put("columns", tableConfig.getColumnInfo());
         map.put("moduleName", toLowerCaseFirstOne(buildConfigDTO.getModuleName()));
         map.put("secondModuleName", toLowerCaseFirstOne(tableConfig.getClassName()));
+        map.put("underlineModuleName", fieldCamel2Underline(tableConfig.getClassName()));
         VelocityContext context = new VelocityContext(map);
 
         // 获取模板列表
@@ -282,20 +256,23 @@ public class GenUtil {
             StringWriter sw = new StringWriter();
             Template tpl = Velocity.getTemplate(template, "UTF-8");
             tpl.merge(context, sw);
-            try {
-                // 添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableConfig)));
-                IOUtils.write(sw.toString(), zip, "UTF-8");
-                IOUtils.closeQuietly(sw);
-                zip.closeEntry();
-            } catch (IOException e) {
-                throw new RuntimeException("渲染模板失败，表名：" + tableConfig.getTableName(), e);
-            }
+            String filePath = getFileName(template,buildConfigDTO, tableConfig);
+
+            //直接写入文件文件
+            fileEntry(sw,tableConfig,filePath);
+
+//            //压缩文件
+            zipEntry(zip,sw,tableConfig,filePath);
+
         }
 
     }
 
-    //首字母转小写
+    /**
+     * 首字母转小写
+     * @param s
+     * @return
+     */
     public static String toLowerCaseFirstOne(String s) {
         if (Character.isLowerCase(s.charAt(0))) {
             return s;
@@ -303,4 +280,91 @@ public class GenUtil {
             return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
         }
     }
+
+    /**
+     * 驼峰法转下划线
+     */
+    public static String fieldCamel2Underline(String str) {
+        return fieldCamel2Charline(str,"_");
+    }
+    /**
+     * 驼峰法转下划线
+     */
+    public static String fieldCamel2Midline(String str) {
+        return fieldCamel2Charline(str,"-");
+    }
+
+    /**
+     * 驼峰法转下划线
+     */
+    public static String fieldCamel2Charline(String str,String charStr) {
+        if (StrUtil.isBlank(str)) {
+            return "";
+        }
+        if(str.length()==1){
+            return str.toLowerCase();
+        }
+        StringBuffer sb = new StringBuffer();
+        for(int i=1;i<str.length();i++){
+            if(Character.isUpperCase(str.charAt(i))){
+                sb.append(charStr+Character.toLowerCase(str.charAt(i)));
+            }else{
+                sb.append(str.charAt(i));
+            }
+        }
+        return (str.charAt(0)+sb.toString()).toLowerCase();
+    }
+
+
+    /**
+     * 生成到文件
+     * @param
+     * @throws IOException
+     */
+    public static void fileEntry(StringWriter sw,TableInfoConfig tableConfig, String filePath){
+        try {
+            File file = new File(filePath);
+            createDirectory(file.getParentFile());
+            file.createNewFile();
+            FileOutputStream out = new FileOutputStream(file);
+            IOUtils.write(sw.toString(), out, "UTF-8");
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException("渲染模板失败，表名：" + tableConfig.getTableName(), e);
+        }
+    }
+
+
+    /**
+     * 生成压缩包
+     */
+    public static void zipEntry(ZipOutputStream zip,StringWriter sw,TableInfoConfig tableConfig, String filePath){
+        try {
+            // 添加到zip
+            zip.putNextEntry(new ZipEntry(filePath));
+            IOUtils.write(sw.toString(), zip, "UTF-8");
+            IOUtils.closeQuietly(sw);
+            zip.closeEntry();
+        } catch (IOException e) {
+            throw new RuntimeException("渲染模板失败，表名：" + tableConfig.getTableName(), e);
+        }
+    }
+
+    /**
+     * 创建文件路径
+     */
+    public static void createDirectory(File file) {
+        if  (!file .exists() && !file .isDirectory()) {
+            file.mkdirs();
+        }
+    }
+
+    /**
+     * 获取 Root Path
+     */
+    public static String getRootPath() {
+        String root = System.getProperty("user.dir");
+        return (new File(root)).getParentFile().getPath();
+    }
+
 }
