@@ -10,7 +10,7 @@ import javax.annotation.Generated;
 
     value = "org.mapstruct.ap.MappingProcessor",
 
-    date = "2019-03-25T13:57:11+0800",
+    date = "2019-04-09T20:06:29+0800",
 
     comments = "version: 1.1.0.Final, compiler: javac, environment: Java 1.8.0_201 (Oracle Corporation)"
 

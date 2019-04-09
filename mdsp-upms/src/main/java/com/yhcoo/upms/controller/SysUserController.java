@@ -113,6 +113,7 @@ public class SysUserController {
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "integer")
     @GetMapping("/id/{id}")
     public ApiResult<SysUser> get(@PathVariable("id") Integer id){
+        SysUser u = sysUserService.getById(id);
         return new ApiResult<>(sysUserService.getById(id));
     }
 

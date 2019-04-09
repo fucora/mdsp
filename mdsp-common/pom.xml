@@ -62,13 +62,13 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-core</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-extension</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

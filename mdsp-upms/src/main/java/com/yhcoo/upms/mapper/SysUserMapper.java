@@ -2,10 +2,10 @@ package com.yhcoo.upms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.apache.ibatis.annotations.Param;
 import com.yhcoo.upms.model.entity.SysUser;
 import com.yhcoo.upms.model.query.SysUserVoQuery;
 import com.yhcoo.common.vo.SysUserVo;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -41,6 +41,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username
      * @return
      */
-    Integer countUserByQuery(@Param("username") String username);
+    Long countUserByQuery(@Param("username") String username);
 
 }

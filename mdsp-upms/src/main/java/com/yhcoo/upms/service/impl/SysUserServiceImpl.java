@@ -70,7 +70,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public SysUserVoQuery pageUserVoByQuery(SysUserVoQuery query) {
         query.setOptimizeCountSql(false);
-        Integer total = sysUserMapper.countUserByQuery(query.getUsername());
+        Long total = sysUserMapper.countUserByQuery(query.getUsername());
         query.setTotal(total);
         sysUserMapper.pageUserVoByQuery(query);
         return query;

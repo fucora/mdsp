@@ -143,7 +143,7 @@
         where u.mobile = #{mobile}
 
     </select>
-    <select id="countUserByQuery" resultType="java.lang.Integer">
+    <select id="countUserByQuery" resultType="java.lang.Long">
         select
           count(1)
         from

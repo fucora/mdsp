@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(query) {
+export function page${tableInfo.className}Api(query) {
   return request({
     url: '/${moduleName}/${secondModuleName}/page',
     method: 'get',
@@ -8,32 +8,32 @@ export function page(query) {
   })
 }
 
-export function addObj(obj) {
+export function add${tableInfo.className}Api(obj) {
   return request({
-    url: '/${moduleName}/${secondModuleName}',
+    url: '/${moduleName}/${secondModuleName}/add',
     method: 'post',
     data: obj
   })
 }
 
-export function getObj(id) {
+export function get${tableInfo.className}Api(id) {
   return request({
-    url: '/${moduleName}/${secondModuleName}/' + id,
+    url: '/${moduleName}/${secondModuleName}/get?id=' + id,
     method: 'get'
   })
 }
 
-export function delObj(id) {
+export function del${tableInfo.className}Api(id) {
   return request({
-    url: '/${moduleName}/${secondModuleName}/' + id,
-    method: 'delete'
+    url: '/${moduleName}/${secondModuleName}/delete?id=' + id,
+    method: 'post'
   })
 }
 
-export function putObj(id, obj) {
+export function update${tableInfo.className}Api(obj) {
   return request({
-    url: '/${moduleName}/${secondModuleName}/' + id,
-    method: 'put',
+    url: '/${moduleName}/${secondModuleName}/update',
+    method: 'post',
     data: obj
   })
 }

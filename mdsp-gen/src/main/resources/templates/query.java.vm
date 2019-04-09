@@ -3,7 +3,7 @@ package $tableInfo.queryPackageName;
 import ${tableInfo.entityPackageName}.${tableInfo.className};
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
-
+import java.util.Date;
 
 
 /**

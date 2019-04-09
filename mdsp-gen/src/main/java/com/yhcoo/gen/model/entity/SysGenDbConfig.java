@@ -12,7 +12,7 @@ import java.util.Date;
  * 代码生成表
  *
  * @author kingkey
- * @date 2019-04-07 22:11:01
+ * @date 2019-04-10 01:15:40
  */
 @Data
 @Accessors(chain = true)
@@ -25,33 +25,41 @@ public class SysGenDbConfig implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
+                            /**
      * 数据库地址
      */
     private String host;
-    /**
+                        /**
      * 数据库端口
      */
     private String port;
-    /**
+                        /**
      * 数据库类型
      */
     private String dbType;
-    /**
+                        /**
      * jdbc驱动类名
      */
     private String driverClassName;
-    /**
+                        /**
      * 具体数据库名
      */
-    private String database;
-    /**
+    private String databaseName;
+                        /**
      * 用户名
      */
     private String userName;
-    /**
+                        /**
      * 密码
      */
     private String password;
-
+                        /**
+     * 创建时间
+     */
+    private Date createTime;
+                        /**
+     * 更新时间
+     */
+    private Date modifyTime;
+            
 }
