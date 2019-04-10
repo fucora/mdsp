@@ -151,7 +151,7 @@ git clone https://github.com/mdsp-team/mdsp
 - [x] MDSP 升级服务 -- 正在开发
 - [x] MDSP 灰度发布 -- 正在开发
 
-# donate
+# 捐赠
 
 - 如果我们的项目对您有帮助，欢迎捐赠
 - 若获得足够的捐赠，将购置服务器发布项目
