@@ -18,7 +18,7 @@ public class MessageLog implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "主键ID")
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ID_WORKER)
     private String id;
 
     @ApiModelProperty(value = "更新时间")

@@ -12,7 +12,7 @@ public class SysRoleDTO {
     /**
      * 主键
      */
-    private Integer roleId;
+    private Long roleId;
 
     /**
      * 角色code用于springsecurity角色标识码
@@ -42,6 +42,6 @@ public class SysRoleDTO {
     /**
      * 绑定的资源id集合
      */
-    private List<Integer> sysResourceIds;
+    private List<Long> sysResourceIds;
 
 }

@@ -18,7 +18,7 @@ public class TreeUtil {
      * @param root
      * @return
      */
-    public static List<SysResourceTree> list2Tree(List<SysResource> sysResources, Integer root){
+    public static List<SysResourceTree> list2Tree(List<SysResource> sysResources, Long root){
         // 普通对象转树节点
         List<SysResourceTree> resourceList = buildTree(sysResources);
         List<SysResourceTree> trees = new ArrayList<>();

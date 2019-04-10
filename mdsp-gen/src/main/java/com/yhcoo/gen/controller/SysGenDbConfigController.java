@@ -55,9 +55,9 @@ public class SysGenDbConfigController {
 
   @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "代码生成表主键删除")
   @ApiOperation(value = "主键删除", notes = "主键删除代码生成表信息", httpMethod = "POST")
-  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Integer")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
   @PostMapping("delete")
-  public ApiResult<Boolean> deleteById(Integer id){
+  public ApiResult<Boolean> deleteById(Long id){
     Assert.isBlank( id,"ID不能为空");
     return new ApiResult<>(sysGenDbConfigService.removeById(id));
   }
@@ -65,9 +65,9 @@ public class SysGenDbConfigController {
 
   @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "代码生成表信息分页查询")
   @ApiOperation(value = "主键查询", notes = "主键查询代码生成表信息", httpMethod = "GET")
-  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Integer")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
   @GetMapping("get")
-  public ApiResult<SysGenDbConfig> getById(Integer id){
+  public ApiResult<SysGenDbConfig> getById(Long id){
     Assert.isBlank( id,"ID不能为空");
     return new ApiResult(sysGenDbConfigService.getById(id));
   }

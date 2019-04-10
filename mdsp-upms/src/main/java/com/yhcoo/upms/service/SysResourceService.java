@@ -39,7 +39,7 @@ public interface SysResourceService extends IService<SysResource> {
      * @param id
      * @return
      */
-    Boolean deleteResource(Integer id);
+    Boolean deleteResource(Long id);
 
     /**
      * 根据角色code查询资源信息

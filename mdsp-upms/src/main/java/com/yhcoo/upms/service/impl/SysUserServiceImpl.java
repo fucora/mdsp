@@ -53,7 +53,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public SysUserInfoDTO getUserInfo(Integer userId, List<String> roles) {
+    public SysUserInfoDTO getUserInfo(Long userId, List<String> roles) {
         SysUserInfoDTO sysUserInfoDTO = new SysUserInfoDTO();
         SysUser sysUser = sysUserMapper.selectById(userId);
         //设置用户信息
@@ -106,7 +106,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Boolean delete(Integer userId) {
+    public Boolean delete(Long userId) {
         this.removeById(userId);
         // 删除原来的角色用户绑定信息
         deleteUserWithRole(userId);
@@ -130,7 +130,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * 删除用户与角色信息
      * @param userId
      */
-    private void deleteUserWithRole(Integer userId) {
+    private void deleteUserWithRole(Long userId) {
         QueryWrapper<SysUserRole> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(SysUserRole::getUserId, userId);
         sysUserRoleMapper.delete(wrapper);

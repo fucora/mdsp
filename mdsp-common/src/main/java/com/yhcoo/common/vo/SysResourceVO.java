@@ -20,7 +20,7 @@ public class SysResourceVO {
     /**
      * 主键
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 资源名称
@@ -50,7 +50,7 @@ public class SysResourceVO {
     /**
      * 父资源id
      */
-    private Integer parentId;
+    private Long parentId;
 
     /**
      * 图标
@@ -65,7 +65,7 @@ public class SysResourceVO {
     /**
      * 排序权重
      */
-    private Integer sort;
+    private Long sort;
 
     /**
      * 创建时间

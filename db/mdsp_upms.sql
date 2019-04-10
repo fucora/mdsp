@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 10/04/2019 01:17:52
+ Date: 11/04/2019 00:05:47
 */
 
 SET NAMES utf8mb4;
@@ -48,13 +48,13 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_resource`;
 CREATE TABLE `sys_resource` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(64) NOT NULL COMMENT '资源名称',
   `type` char(1) NOT NULL DEFAULT '0' COMMENT '资源类型 0-菜单 1-按钮',
   `path` varchar(128) DEFAULT NULL COMMENT '前端url',
   `permission` varchar(32) DEFAULT NULL COMMENT '按钮权限资源标识',
   `color` varchar(64) DEFAULT NULL COMMENT '颜色',
-  `parent_id` int(11) NOT NULL COMMENT '父资源id',
+  `parent_id` bigint(11) NOT NULL COMMENT '父资源id',
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
   `component` varchar(128) DEFAULT NULL COMMENT '组件路径',
   `sort` int(11) DEFAULT NULL COMMENT '排序权重',
@@ -108,7 +108,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `role_id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `role_code` varchar(32) NOT NULL COMMENT '角色code用于springsecurity角色标识码',
   `role_name` varchar(128) NOT NULL COMMENT '角色名称',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -131,8 +131,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_resource`;
 CREATE TABLE `sys_role_resource` (
-  `role_id` int(11) NOT NULL COMMENT '主键',
-  `resource_id` int(11) NOT NULL COMMENT '主键',
+  `role_id` bigint(11) NOT NULL COMMENT '主键',
+  `resource_id` bigint(11) NOT NULL COMMENT '主键',
   PRIMARY KEY (`role_id`,`resource_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='角色资源关联表';
 
@@ -188,7 +188,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `user_id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `username` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '用户名',
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '密码',
   `email` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮箱',
@@ -222,8 +222,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `user_id` int(11) NOT NULL COMMENT '主键',
-  `role_id` int(11) NOT NULL COMMENT '主键',
+  `user_id` bigint(11) NOT NULL COMMENT '主键',
+  `role_id` bigint(11) NOT NULL COMMENT '主键',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户角色关联表';
 

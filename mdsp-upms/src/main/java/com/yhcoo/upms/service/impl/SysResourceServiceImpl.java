@@ -61,7 +61,7 @@ public class SysResourceServiceImpl  extends ServiceImpl<SysResourceMapper, SysR
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Boolean deleteResource(Integer id) {
+    public Boolean deleteResource(Long id) {
         // 伪删除
         SysResource sysResource = super.getById(id);
         sysResource.setDelFlag(DataStatusEnum.LOCK.getCode());

@@ -37,7 +37,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param roles
      * @return
      */
-    SysUserInfoDTO getUserInfo(Integer userId, List<String> roles);
+    SysUserInfoDTO getUserInfo(Long userId, List<String> roles);
 
     /**
      * 用户信息分页查询
@@ -65,5 +65,5 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId
      * @return
      */
-    Boolean delete(Integer userId);
+    Boolean delete(Long userId);
 }

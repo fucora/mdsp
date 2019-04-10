@@ -21,8 +21,8 @@ public class SysLog {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    private Long id;
 
     /**
      * 服务名称

@@ -20,7 +20,7 @@ public class SysUser{
     /**
      * 主键ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 用户名

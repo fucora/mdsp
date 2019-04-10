@@ -15,7 +15,7 @@ public class SysGenDbConfigQuery extends  Page<SysGenDbConfig> {
         /**
      * 主键
      */
-    private Integer id;
+    private Long id;
         /**
      * 数据库地址
      */

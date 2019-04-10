@@ -22,8 +22,8 @@ public class SysRole{
     /**
      * 主键
      */
-    @TableId(value = "role_id", type = IdType.AUTO)
-    private Integer roleId;
+    @TableId(value = "role_id", type = IdType.ID_WORKER)
+    private Long roleId;
 
     /**
      * 角色code用于springsecurity角色标识码

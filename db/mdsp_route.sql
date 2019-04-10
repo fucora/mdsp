@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 25/03/2019 14:14:08
+ Date: 11/04/2019 00:05:34
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_zuul_route`;
 CREATE TABLE `sys_zuul_route` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'router Id',
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'router Id',
   `path` varchar(255) NOT NULL COMMENT '路由路径',
   `service_id` varchar(255) NOT NULL COMMENT '服务名称',
   `url` varchar(255) DEFAULT NULL COMMENT 'url代理',

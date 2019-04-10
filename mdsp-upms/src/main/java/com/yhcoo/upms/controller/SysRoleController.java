@@ -44,17 +44,17 @@ public class SysRoleController {
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "删除角色")
     @ApiOperation(value = "删除角色", notes = "删除角色信息", httpMethod = "DELETE")
-    @ApiImplicitParam(name = "id", value = "角色id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "角色id", required = true, dataType = "Long")
     @DeleteMapping("/{id}")
-    public ApiResult<Boolean> delete(@PathVariable("id") Integer id){
+    public ApiResult<Boolean> delete(@PathVariable("id") Long id){
         return new ApiResult<>(sysRoleService.deleteById(id));
     }
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "查询角色信息以及相关联的资源信息")
     @ApiOperation(value = "查询角色信息", notes = "查询角色信息以及相关联的资源信息", httpMethod = "GET")
-    @ApiImplicitParam(name = "id", value = "角色id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "角色id", required = true, dataType = "Long")
     @GetMapping("/{id}")
-    public ApiResult<SysRoleDTO> getSysRoleInfo(@PathVariable("id") Integer id){
+    public ApiResult<SysRoleDTO> getSysRoleInfo(@PathVariable("id") Long id){
         return new ApiResult<>(sysRoleService.getRoleInfoWithResourceById(id));
     }
 

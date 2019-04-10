@@ -22,8 +22,8 @@ public class SysResource implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    private Long id;
 
     /**
      * 资源名称
@@ -53,7 +53,7 @@ public class SysResource implements Serializable {
     /**
      * 父资源id
      */
-    private Integer parentId;
+    private Long parentId;
 
     /**
      * 图标

@@ -80,18 +80,18 @@ public class SysResourceController {
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据id查询资源信息")
     @ApiOperation(value = "查询资源信息", notes = "根据id查询资源信息", httpMethod = "GET")
-    @ApiImplicitParam(name = "id", value = "资源id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "资源id", required = true, dataType = "Long")
     @GetMapping("/id/{id}")
-    public ApiResult<SysResource> getById(@PathVariable("id") Integer id){
+    public ApiResult<SysResource> getById(@PathVariable("id") Long id){
         return new ApiResult<>(sysResourceService.getById(id));
     }
 
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据id删除资源信息")
     @ApiOperation(value = "删除资源信息", notes = "根据id删除资源信息", httpMethod = "DELETE")
-    @ApiImplicitParam(name = "id", value = "资源id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "资源id", required = true, dataType = "Long")
     @DeleteMapping("/id/{id}")
-    public ApiResult<Boolean> deleteResource(@PathVariable("id") Integer id) {
+    public ApiResult<Boolean> deleteResource(@PathVariable("id") Long id) {
         return new ApiResult<>(sysResourceService.deleteResource(id));
     }
 

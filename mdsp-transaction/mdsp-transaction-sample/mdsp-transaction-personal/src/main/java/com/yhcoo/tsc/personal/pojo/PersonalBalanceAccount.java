@@ -17,11 +17,11 @@ public class PersonalBalanceAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private Long id;
 
     private BigDecimal totalAmount;
 
-    private Integer userId;
+    private Long userId;
 
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;

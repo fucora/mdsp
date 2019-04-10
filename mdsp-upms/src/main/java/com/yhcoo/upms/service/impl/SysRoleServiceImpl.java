@@ -34,7 +34,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(sysRoleDTO, sysRole);
         sysRoleMapper.insert(sysRole);
-        Integer roleId = sysRole.getRoleId();
+        Long roleId = sysRole.getRoleId();
         sysRoleDTO.setRoleId(roleId);
         // 2、然后绑定role与resource信息 存入数据库
         bindRoleWithResource(sysRoleDTO);
@@ -57,7 +57,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Boolean deleteById(Integer roleId) {
+    public Boolean deleteById(Long roleId) {
         // 1、删除角色信息
         sysRoleMapper.deleteById(roleId);
         // 2、先删除原来绑定的资源信息
@@ -66,7 +66,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
     }
 
     @Override
-    public SysRoleDTO getRoleInfoWithResourceById(Integer roleId) {
+    public SysRoleDTO getRoleInfoWithResourceById(Long roleId) {
         SysRole sysRole = sysRoleMapper.selectById(roleId);
         SysRoleDTO sysRoleDTO = new SysRoleDTO();
         BeanUtils.copyProperties(sysRole, sysRoleDTO);
@@ -74,7 +74,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
         QueryWrapper<SysRoleResource> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(SysRoleResource::getRoleId, roleId);
         List<SysRoleResource> roleResources = sysRoleResourceMapper.selectList(queryWrapper);
-        List<Integer> resourceIds = roleResources.stream()
+        List<Long> resourceIds = roleResources.stream()
                 .map(SysRoleResource::getResourceId)
                 .collect(Collectors.toList());
         sysRoleDTO.setSysResourceIds(resourceIds);
@@ -110,7 +110,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
      * 删除角色与绑定资源信息
      * @param roleId
      */
-    private void deleteBindRoleWithResource(Integer roleId) {
+    private void deleteBindRoleWithResource(Long roleId) {
         QueryWrapper<SysRoleResource> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(SysRoleResource::getRoleId, roleId);
         sysRoleResourceMapper.delete(wrapper);

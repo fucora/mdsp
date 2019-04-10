@@ -55,9 +55,9 @@ public class $!{tableInfo.className}Controller {
 
   @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}主键删除")
   @ApiOperation(value = "主键删除", notes = "主键删除${tableInfo.tableComment}信息", httpMethod = "POST")
-  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Integer")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
   @PostMapping("delete")
-  public ApiResult<Boolean> deleteById(Integer id){
+  public ApiResult<Boolean> deleteById(Long id){
     Assert.isBlank( id,"ID不能为空");
     return new ApiResult<>(${secondModuleName}Service.removeById(id));
   }
@@ -65,9 +65,9 @@ public class $!{tableInfo.className}Controller {
 
   @SysLog(serviceId = SERVICE_ID, moduleName = MODULE_NAME, actionName = "${tableInfo.tableComment}信息分页查询")
   @ApiOperation(value = "主键查询", notes = "主键查询${tableInfo.tableComment}信息", httpMethod = "GET")
-  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Integer")
+  @ApiImplicitParam(name = "id", value = "查询条件ID", required = true, dataType = "Long")
   @GetMapping("get")
-  public ApiResult<${tableInfo.className}> getById(Integer id){
+  public ApiResult<${tableInfo.className}> getById(Long id){
     Assert.isBlank( id,"ID不能为空");
     return new ApiResult(${secondModuleName}Service.getById(id));
   }

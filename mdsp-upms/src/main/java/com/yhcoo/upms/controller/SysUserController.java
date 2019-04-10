@@ -50,7 +50,7 @@ public class SysUserController {
     @ApiOperation(value = "获取用户信息", notes = "用户详细信息，附带角色信息，权限信息", httpMethod = "GET")
     @GetMapping("/info")
     public ApiResult<SysUserInfoDTO> getInfo(){
-        Integer userId = UserUtil.getUserId(request);
+        Long userId = UserUtil.getUserId(request);
         List<String> roles =UserUtil.getRoles(request);
         return new ApiResult<>(sysUserService.getUserInfo(userId, roles));
     }
@@ -102,17 +102,17 @@ public class SysUserController {
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "删除用户信息")
     @ApiOperation(value = "删除用户信息", notes = "删除用户信息", httpMethod = "DELETE")
-    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long")
     @DeleteMapping("/id/{id}")
-    public ApiResult<Boolean> delete(@PathVariable("id") Integer id){
+    public ApiResult<Boolean> delete(@PathVariable("id") Long id){
         return new ApiResult<>(sysUserService.delete(id));
     }
 
     @SysLog(serviceId = MdspServiceNameConstants.MDSP_USER_SERVICE, moduleName = MODULE_NAME, actionName = "主键查询用户信息")
     @ApiOperation(value = "主键查询用户信息", notes = "查询用户信息", httpMethod = "GET")
-    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "integer")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long")
     @GetMapping("/id/{id}")
-    public ApiResult<SysUser> get(@PathVariable("id") Integer id){
+    public ApiResult<SysUser> get(@PathVariable("id") Long id){
         SysUser u = sysUserService.getById(id);
         return new ApiResult<>(sysUserService.getById(id));
     }

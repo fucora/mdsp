@@ -18,12 +18,12 @@ public class SysUserRole{
     /**
      * 主键
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 主键
      */
-    private Integer roleId;
+    private Long roleId;
 
 
 }

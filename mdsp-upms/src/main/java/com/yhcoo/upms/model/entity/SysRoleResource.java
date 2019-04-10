@@ -17,12 +17,12 @@ public class SysRoleResource{
     /**
      * 主键
      */
-    private Integer roleId;
+    private Long roleId;
 
     /**
      * 主键
      */
-    private Integer resourceId;
+    private Long resourceId;
 
 
 }

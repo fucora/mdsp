@@ -25,7 +25,7 @@ public class ${tableInfo.className} implements Serializable {
     /**
      * $!tableInfo.pk.columnComment
      */
-    @TableId(value = "$!tableInfo.pk.columnName", type = IdType.AUTO)
+    @TableId(value = "$!tableInfo.pk.columnName", type = IdType.ID_WORKER)
     private $!tableInfo.pk.attrType $!tableInfo.pk.attrName;
 
     #foreach ($column in ${tableInfo.columnInfo})

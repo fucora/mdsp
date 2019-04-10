@@ -12,7 +12,7 @@ public class SysZuulRoute implements Serializable {
     /**
      * router Id
      */
-    private Integer id;
+    private Long id;
     /**
      * 路由路径
      */

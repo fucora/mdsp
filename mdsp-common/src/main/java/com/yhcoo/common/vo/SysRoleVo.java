@@ -20,7 +20,7 @@ public class SysRoleVo implements Serializable {
     /**
      * 主键
      */
-    private Integer roleId;
+    private Long roleId;
 
     /**
      * 角色code用于springsecurity角色标识码

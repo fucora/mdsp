@@ -22,8 +22,8 @@ public class SysGenDbConfig implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    private Long id;
 
                             /**
      * 数据库地址

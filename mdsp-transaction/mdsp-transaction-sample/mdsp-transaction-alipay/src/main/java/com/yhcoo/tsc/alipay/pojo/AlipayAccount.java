@@ -19,13 +19,13 @@ public class AlipayAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "主键ID")
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty(value = "余额")
     private BigDecimal balanceAmount;
 
     @ApiModelProperty(value = "用户id")
-    private Integer userId;
+    private Long userId;
 
     @ApiModelProperty(value = "版本号")
     @Version

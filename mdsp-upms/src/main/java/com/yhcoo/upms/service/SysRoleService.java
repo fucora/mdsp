@@ -27,14 +27,14 @@ public interface SysRoleService extends IService<SysRole> {
      * @param roleId
      * @return
      */
-    Boolean deleteById(Integer roleId);
+    Boolean deleteById(Long roleId);
 
     /**
      * 根据角色id查询角色信息与其绑定的资源id
      * @param roleId
      * @return
      */
-    SysRoleDTO getRoleInfoWithResourceById(Integer roleId);
+    SysRoleDTO getRoleInfoWithResourceById(Long roleId);
 
     /**
      * 分页条件查询

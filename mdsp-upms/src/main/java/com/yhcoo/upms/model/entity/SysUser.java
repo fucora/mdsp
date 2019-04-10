@@ -22,8 +22,8 @@ public class SysUser {
     /**
      * 主键ID
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    @TableId(value = "user_id", type = IdType.ID_WORKER)
+    private Long userId;
 
     /**
      * 用户名
