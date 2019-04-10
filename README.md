@@ -46,7 +46,10 @@ axios , echarts 的后台权限管理框架,集成了基于MQ的可靠消息的�
 - 链路追踪：Skywalking
 - 消息队列：RabbitMQ
 - 权限认证：Spring secruity Oauth2
+- ORM框架：MyBatisPlus
 - 部署：Docker+Rancher
+
+
 
 # 项目结构说明
 - mdsp-common 公共模块
