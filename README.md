@@ -1,5 +1,9 @@
 # MDSP
-基于Spring cloud Alibaba,Oauth2,基于VUE的后台权限管理框架,集成了基于MQ的可靠消息的分布式事务解决方案。
+MDSP ：（Mobile Dynamic Service Platform）移动动态服务平台。
+该项目基于Spring cloud Alibaba,Oauth2,基于VUE, element-ui ,
+axios , echarts 的后台权限管理框架,集成了基于MQ的可靠消息的分布
+式事务解决方案。该项目将提供对 Taro ,RN, MDS 等框架开发的移动端应
+用做运维发布支持。
 
 ### 架构摘要
 #### 服务鉴权
@@ -159,8 +163,8 @@ git clone https://github.com/mdsp-team/mdsp
   </tr>
   <tr></tr>
   <tr align="center">
-    <td><img width="50%" src=""></td>
-    <td><img width="50%" src=""></td>
+    <td><img width="50%" src="https://github.com/mdsp-team/mdsp/blob/master/docs/img/zfb.jpg"></td>
+    <td><img width="50%" src="https://github.com/mdsp-team/mdsp/blob/master/docs/img/wxf.jpg"></td>
   </tr>
 </table>
 
