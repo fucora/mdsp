@@ -13,6 +13,7 @@
     <artifactId>mdsp-starter</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>mdsp-oss-spring-boot-starter-parent</module>
         <module>mdsp-log-spring-boot-starter-parent</module>
         <module>mdsp-cache-spring-boot-starter-parent</module>
         <module>mdsp-lock-springboot-starter-parent</module>
