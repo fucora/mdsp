@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mdsp-auth</module>
-        <module>mdsp-upms</module>
         <module>mdsp-common</module>
         <module>mdsp-gateway</module>
         <module>mdsp-log</module>
@@ -18,6 +17,7 @@
         <module>mdsp-gen</module>
         <module>mdsp-transaction</module>
         <module>mdsp-monitor</module>
+        <module>mdsp-modules</module>
     </modules>
 
     <parent>

@@ -62,17 +62,22 @@ axios , echarts 的后台权限管理框架,集成了基于MQ的可靠消息的�
 # 项目结构说明
 - mdsp-common 公共模块
 - mdsp-auth  Oauth2 认证服务器 提供token
-- mdsp-upms 通用用户权限系统
+- mdsp-gateway 后端统一入口，提供动态路由，oauth2的资源服务器
+- mdsp-monitor Spring boot admin监控以及Skywalking监控
+- mdsp-log 日志中心模块
+- mdsp-gen 代码生成模块
 - mdsp-transcation 基于mq最终一致性实现可靠消息的分布式事务方案
   - mdsp-transaction-message 独立消息服务微服务
   - mdsp-transaction-sample 基于支付宝转账的演示
   - mdsp-transaction-console 消息补偿管理后台
-- mdsp-monitor Spring boot admin监控以及Skywalking监控
-- mdsp-log 日志中心模块
-- mdsp-file 文件上传服务,这个服务可以暂时不起，因为前端还没有对接
-- mdsp-gen 代码生成模块
 - mdsp-starter 自定义封装各种starer 目前封装了日志处理
-- mdsp-gateway 后端统一入口，提供动态路由，oauth2的资源服务器
+  - mdsp-cache-spring-boot-starter-parent 缓存自定义starer
+  - mdsp-log-spring-boot-starter-parent 日志自定义starer（自动入库）
+  - mdsp-oss-spring-boot-starter-parent OSS自定义starer （支持 阿里云，七牛，腾讯）
+- mdsp-modules 自定义封装各种starer 目前封装了日志处理
+  - mdsp-upms 通用用户权限系统
+  - mdsp-website 企业官网
+
 
 ## 环境准备
 

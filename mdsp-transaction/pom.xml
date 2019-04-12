@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mdsp-transaction-message</module>
-        <!--<module>mdsp-transaction-sample</module>-->
+        <module>mdsp-transaction-sample</module>
         <module>mdsp-transaction-console</module>
     </modules>
 
