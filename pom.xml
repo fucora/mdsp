@@ -16,7 +16,6 @@
         <module>mdsp-log</module>
         <module>mdsp-starter</module>
         <module>mdsp-gen</module>
-        <module>mdsp-file</module>
         <module>mdsp-transaction</module>
         <module>mdsp-monitor</module>
     </modules>
