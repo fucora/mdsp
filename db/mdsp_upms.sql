@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 11/04/2019 00:05:47
+ Date: 13/04/2019 12:02:18
 */
 
 SET NAMES utf8mb4;
@@ -48,11 +48,11 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_resource`;
 CREATE TABLE `sys_resource` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(64) NOT NULL COMMENT '资源名称',
   `type` char(1) NOT NULL DEFAULT '0' COMMENT '资源类型 0-菜单 1-按钮',
   `path` varchar(128) DEFAULT NULL COMMENT '前端url',
-  `permission` varchar(32) DEFAULT NULL COMMENT '按钮权限资源标识',
+  `permission` varchar(128) DEFAULT NULL COMMENT '按钮权限资源标识',
   `color` varchar(64) DEFAULT NULL COMMENT '颜色',
   `parent_id` bigint(11) NOT NULL COMMENT '父资源id',
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
@@ -64,7 +64,7 @@ CREATE TABLE `sys_resource` (
   `url` varchar(128) DEFAULT NULL COMMENT '后端路径',
   `method` varchar(11) DEFAULT NULL COMMENT '请求方式',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=1116634105528655881 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='资源表';
 
 -- ----------------------------
 -- Records of sys_resource
@@ -101,6 +101,13 @@ INSERT INTO `sys_resource` VALUES (66, '添加数据库', '1', NULL, 'sys_gen_db
 INSERT INTO `sys_resource` VALUES (67, '更新数据库', '1', NULL, 'sys_gen_db_config_update', NULL, 65, NULL, 'views/gen/sysGenDbConfig/index', 1, '2018-11-05 15:50:02', '2019-04-07 18:42:48', '0', '/gen/sysGenDbConfig/*', 'PUT');
 INSERT INTO `sys_resource` VALUES (68, '删除数据库', '1', NULL, 'sys_gen_db_config_delete', NULL, 65, NULL, 'views/gen/sysGenDbConfig/index', 2, '2018-11-05 15:50:26', '2019-04-07 18:42:39', '0', '/gen/sysGenDbConfig/*', 'DELETE');
 INSERT INTO `sys_resource` VALUES (69, '选择数据库', '1', NULL, 'sys_gen_db_config_select', NULL, 65, NULL, 'views/gen/sysGenDbConfig/index', 1, '2018-11-05 15:50:26', '2019-04-07 18:42:32', '0', '/gen/sysGenDbConfig/*', 'GET');
+INSERT INTO `sys_resource` VALUES (1116634105528655874, '网站管理', '0', '/website', '/website', NULL, -1, 'develop', 'Layout', 2, '2019-03-02 15:07:08', '2019-03-03 22:32:28', '0', '', NULL);
+INSERT INTO `sys_resource` VALUES (1116634105528655875, '订单管理', '0', 'intentOrder', '/website/intentOrder', NULL, 1116634105528655874, 'yonghuguanli', 'views/website/intentOrder/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+INSERT INTO `sys_resource` VALUES (1116634105528655876, '意向客户', '0', '/website/intentOrder', '/website/intentOrder', NULL, 1116634105528655875, 'yonghuguanli', 'views/website/intentOrder/index', 2, '2017-11-02 22:24:37', '2019-03-03 17:05:20', '0', '', NULL);
+INSERT INTO `sys_resource` VALUES (1116634105528655877, '添加', '1', NULL, 'intent_order_add', NULL, 1116634105528655876, NULL, NULL, 1, '2018-11-05 15:49:44', '2019-03-03 22:06:42', '0', '/website/intentOrder/*', 'POST');
+INSERT INTO `sys_resource` VALUES (1116634105528655878, '修改', '1', NULL, 'intent_order_update', NULL, 1116634105528655876, NULL, NULL, 1, '2018-11-05 15:50:02', '2019-03-03 22:07:33', '0', '/website/intentOrder/*', 'PUT');
+INSERT INTO `sys_resource` VALUES (1116634105528655879, '删除', '1', NULL, 'intent_order_delete', NULL, 1116634105528655876, NULL, NULL, 5, '2018-11-05 15:50:26', '2019-03-03 22:07:40', '0', '/website/intentOrder/*', 'DELETE');
+INSERT INTO `sys_resource` VALUES (1116634105528655880, '查询', '1', NULL, 'intent_order_select', NULL, 1116634105528655876, NULL, NULL, 1, '2018-11-05 15:50:26', '2019-03-03 22:07:58', '0', '/website/intentOrder/*', 'GET');
 COMMIT;
 
 -- ----------------------------
@@ -108,7 +115,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `role_id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `role_id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `role_code` varchar(32) NOT NULL COMMENT '角色code用于springsecurity角色标识码',
   `role_name` varchar(128) NOT NULL COMMENT '角色名称',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -131,8 +138,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_resource`;
 CREATE TABLE `sys_role_resource` (
-  `role_id` bigint(11) NOT NULL COMMENT '主键',
-  `resource_id` bigint(11) NOT NULL COMMENT '主键',
+  `role_id` bigint(64) NOT NULL COMMENT '主键',
+  `resource_id` bigint(64) NOT NULL COMMENT '主键',
   PRIMARY KEY (`role_id`,`resource_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='角色资源关联表';
 
@@ -169,6 +176,13 @@ INSERT INTO `sys_role_resource` VALUES (1, 66);
 INSERT INTO `sys_role_resource` VALUES (1, 67);
 INSERT INTO `sys_role_resource` VALUES (1, 68);
 INSERT INTO `sys_role_resource` VALUES (1, 69);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655874);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655875);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655876);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655877);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655878);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655879);
+INSERT INTO `sys_role_resource` VALUES (1, 1116634105528655880);
 INSERT INTO `sys_role_resource` VALUES (2, 1);
 INSERT INTO `sys_role_resource` VALUES (2, 4);
 INSERT INTO `sys_role_resource` VALUES (2, 8);
@@ -188,7 +202,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `user_id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `user_id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `username` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '用户名',
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '密码',
   `email` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '邮箱',
@@ -222,8 +236,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `user_id` bigint(11) NOT NULL COMMENT '主键',
-  `role_id` bigint(11) NOT NULL COMMENT '主键',
+  `user_id` bigint(64) NOT NULL COMMENT '主键',
+  `role_id` bigint(64) NOT NULL COMMENT '主键',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户角色关联表';
 
