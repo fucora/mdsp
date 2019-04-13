@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yhcoo.website.mapper.IntentOrderMapper">
+
+    <!-- 基本resultMap -->
+    <resultMap type="com.yhcoo.website.model.entity.IntentOrder" id="IntentOrderMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <select id="pageByQuery" resultMap="IntentOrderMap">
+        select * from  intent_order
+        <where >
+            <if test="id != null">
+                and   id = #{ id}
+            </if>
+            <if test=" name != '' and  name != null">
+                and   name = #{ name}
+            </if>
+            <if test=" phone != '' and  phone != null">
+                and   phone = #{ phone}
+            </if>
+            <if test=" remark != '' and  remark != null">
+                and   remark = #{ remark}
+            </if>
+            <if test="createTime != null">
+                and   create_time = #{ createTime}
+            </if>
+            <if test="modifyTime != null">
+                and   modify_time = #{ modifyTime}
+            </if>
+            <if test=" delFlag != '' and  delFlag != null">
+                and   del_flag = #{ delFlag}
+            </if>
+        </where>
+    </select>
+</mapper>

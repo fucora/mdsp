@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,9 +75,10 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
         QueryWrapper<SysRoleResource> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(SysRoleResource::getRoleId, roleId);
         List<SysRoleResource> roleResources = sysRoleResourceMapper.selectList(queryWrapper);
-        List<Long> resourceIds = roleResources.stream()
-                .map(SysRoleResource::getResourceId)
-                .collect(Collectors.toList());
+        List<String> resourceIds = new ArrayList<>();
+        for (SysRoleResource roleResource : roleResources ) {
+            resourceIds.add(roleResource.getResourceId().toString());
+        }
         sysRoleDTO.setSysResourceIds(resourceIds);
         return sysRoleDTO;
     }
@@ -100,7 +102,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
     private void bindRoleWithResource(SysRoleDTO sysRoleDTO) {
         sysRoleDTO.getSysResourceIds().forEach(resourceId -> {
             SysRoleResource sysRoleResource = new SysRoleResource();
-            sysRoleResource.setResourceId(resourceId);
+            sysRoleResource.setResourceId(Long.getLong(resourceId));
             sysRoleResource.setRoleId(sysRoleDTO.getRoleId());
             sysRoleResourceMapper.insert(sysRoleResource);
         });

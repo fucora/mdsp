@@ -1,5 +1,7 @@
 package com.yhcoo.upms.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ public class SysResourceTree {
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**
@@ -50,6 +53,7 @@ public class SysResourceTree {
     /**
      * 父资源id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long parentId;
 
     /**

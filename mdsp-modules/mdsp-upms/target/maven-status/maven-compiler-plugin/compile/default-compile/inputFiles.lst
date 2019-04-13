@@ -29,5 +29,4 @@
 /Users/kingkey/Documents/GitHub/MDS/mdsp/mdsp-modules/mdsp-upms/src/main/java/com/yhcoo/upms/model/query/SysRoleQuery.java
 /Users/kingkey/Documents/GitHub/MDS/mdsp/mdsp-modules/mdsp-upms/src/main/java/com/yhcoo/upms/model/entity/SysOauthClientDetails.java
 /Users/kingkey/Documents/GitHub/MDS/mdsp/mdsp-modules/mdsp-upms/src/main/java/com/yhcoo/upms/model/entity/SysRole.java
-/Users/kingkey/Documents/GitHub/MDS/mdsp/mdsp-modules/mdsp-upms/src/main/java/com/yhcoo/upms/config/MybatisPlusConfig.java
 /Users/kingkey/Documents/GitHub/MDS/mdsp/mdsp-modules/mdsp-upms/src/main/java/com/yhcoo/upms/model/entity/SysUser.java

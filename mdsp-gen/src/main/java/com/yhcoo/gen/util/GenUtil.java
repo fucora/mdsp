@@ -1,6 +1,7 @@
 package com.yhcoo.gen.util;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.yhcoo.gen.model.config.ColumnInfoConfig;
 import com.yhcoo.gen.model.config.TableInfoConfig;
 import com.yhcoo.gen.model.dto.BuildConfigDTO;
@@ -164,7 +165,7 @@ public class GenUtil {
             return resourcesPath + sep+  "mapper" + sep+ className + "Mapper.xml";
         }
         if (template.contains("templates/menu.sql.vm")) {
-            return sqlPath + "menu.sql.vm";
+            return sqlPath + className + "menu.sql";
         }
         return null;
     }
@@ -240,6 +241,7 @@ public class GenUtil {
         LocalDateTime now = LocalDateTime.now();
         // 封装模板数据
         Map<String, Object> map = new HashMap<>();
+        map.put("ids", getIdList());
         map.put("tableInfo", tableConfig);
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("datetime", now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -365,6 +367,18 @@ public class GenUtil {
     public static String getRootPath() {
         String root = System.getProperty("user.dir");
         return (new File(root)).getParentFile().getPath();
+    }
+
+    /**
+     * 获取 id List
+     */
+    public static List<Long> getIdList() {
+        List<Long> ids = new ArrayList<>();
+        IdWorker idWorker = new IdWorker();
+        for(int i = 0; i < 10; i++ ) {
+            ids.add(idWorker.getId());
+        }
+        return ids;
     }
 
 }

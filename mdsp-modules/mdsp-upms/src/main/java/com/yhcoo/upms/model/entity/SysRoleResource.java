@@ -1,5 +1,7 @@
 package com.yhcoo.upms.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -17,11 +19,13 @@ public class SysRoleResource{
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long roleId;
 
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long resourceId;
 
 

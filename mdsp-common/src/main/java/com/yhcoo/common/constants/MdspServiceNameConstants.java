@@ -11,5 +11,6 @@ public interface MdspServiceNameConstants {
     String MDSP_USER_SERVICE = "MDSP_USER_SERVICE";
     String MDSP_LOG_SERVICE = "MDSP_LOG_SERVICE";
     String MDSP_GEN_SERVICE = "MDSP_GEN_SERVICE";
+    String MDSP_WEBSITE_SERVICE = "MDSP_WEBSITE_SERVICE";
 
 }

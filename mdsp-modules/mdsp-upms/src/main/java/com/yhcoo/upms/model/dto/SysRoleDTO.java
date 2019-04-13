@@ -1,5 +1,7 @@
 package com.yhcoo.upms.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,7 @@ public class SysRoleDTO {
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long roleId;
 
     /**
@@ -42,6 +45,6 @@ public class SysRoleDTO {
     /**
      * 绑定的资源id集合
      */
-    private List<Long> sysResourceIds;
+    private List<String> sysResourceIds;
 
 }

@@ -1,5 +1,7 @@
 package com.yhcoo.upms.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -18,11 +20,13 @@ public class SysUserRole{
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long userId;
 
     /**
      * 主键
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long roleId;
 
 

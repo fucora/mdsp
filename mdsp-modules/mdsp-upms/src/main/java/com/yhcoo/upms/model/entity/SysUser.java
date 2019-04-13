@@ -2,6 +2,8 @@ package com.yhcoo.upms.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -22,6 +24,7 @@ public class SysUser {
     /**
      * 主键ID
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     @TableId(value = "user_id", type = IdType.ID_WORKER)
     private Long userId;
 

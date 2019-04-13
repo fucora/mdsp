@@ -1,0 +1,7 @@
+com/yhcoo/website/service/impl/IntentOrderServiceImpl.class
+com/yhcoo/website/controller/IntentOrderController.class
+com/yhcoo/website/mapper/IntentOrderMapper.class
+com/yhcoo/website/model/query/IntentOrderQuery.class
+com/yhcoo/website/service/IntentOrderService.class
+com/yhcoo/website/MdspWebSiteServiceApplication.class
+com/yhcoo/website/model/entity/IntentOrder.class

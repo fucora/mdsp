@@ -7,7 +7,6 @@ com/yhcoo/upms/service/impl/SysUserServiceImpl.class
 com/yhcoo/upms/service/SysRoleService.class
 com/yhcoo/upms/model/entity/SysResource.class
 com/yhcoo/upms/service/impl/SysResourceServiceImpl.class
-com/yhcoo/upms/config/MybatisPlusConfig.class
 com/yhcoo/upms/MdspUpmsServiceApplication.class
 com/yhcoo/upms/model/entity/SysRole.class
 com/yhcoo/upms/controller/SysRoleController.class

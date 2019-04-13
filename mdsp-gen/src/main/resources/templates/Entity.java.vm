@@ -25,6 +25,7 @@ public class ${tableInfo.className} implements Serializable {
     /**
      * $!tableInfo.pk.columnComment
      */
+    @JsonSerialize(using=ToStringSerializer.class)
     @TableId(value = "$!tableInfo.pk.columnName", type = IdType.ID_WORKER)
     private $!tableInfo.pk.attrType $!tableInfo.pk.attrName;
 
