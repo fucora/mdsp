@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 13/04/2019 12:02:29
+ Date: 16/04/2019 16:00:47
 */
 
 SET NAMES utf8mb4;
@@ -30,6 +30,6 @@ CREATE TABLE `intent_order` (
   `modify_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del_flag` char(1) DEFAULT '0' COMMENT '是否删除 1-删除，0-未删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1116913057778237443 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='意向客户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='意向客户表';
 
 SET FOREIGN_KEY_CHECKS = 1;

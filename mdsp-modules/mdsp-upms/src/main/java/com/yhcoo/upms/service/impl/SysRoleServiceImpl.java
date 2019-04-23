@@ -102,7 +102,7 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
     private void bindRoleWithResource(SysRoleDTO sysRoleDTO) {
         sysRoleDTO.getSysResourceIds().forEach(resourceId -> {
             SysRoleResource sysRoleResource = new SysRoleResource();
-            sysRoleResource.setResourceId(Long.getLong(resourceId));
+            sysRoleResource.setResourceId(Long.valueOf(resourceId));
             sysRoleResource.setRoleId(sysRoleDTO.getRoleId());
             sysRoleResourceMapper.insert(sysRoleResource);
         });

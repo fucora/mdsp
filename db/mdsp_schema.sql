@@ -21,3 +21,5 @@ create database nacos_config default character set utf8mb4 collate utf8mb4_unico
 # 官网
 create database mdsp_website default character set utf8mb4 collate utf8mb4_unicode_ci;
 
+# 商城
+create database mdsp_litemall default character set utf8mb4 collate utf8mb4_unicode_ci;

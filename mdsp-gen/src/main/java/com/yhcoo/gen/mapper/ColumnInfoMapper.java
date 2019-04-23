@@ -2,9 +2,11 @@ package com.yhcoo.gen.mapper;
 
 import com.yhcoo.gen.model.entity.ColumnInfo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface ColumnInfoMapper {
 
     /**

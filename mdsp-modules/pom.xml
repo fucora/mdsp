@@ -12,10 +12,10 @@
     <groupId>com.yhcoo.modules</groupId>
     <artifactId>mdsp-modules</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>mdsp-upms</module>
         <module>mdsp-website</module>
     </modules>
-
 
 </project>

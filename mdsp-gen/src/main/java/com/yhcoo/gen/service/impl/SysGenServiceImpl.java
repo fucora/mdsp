@@ -27,12 +27,21 @@ public class SysGenServiceImpl implements SysGenService {
 
     @Override
     public byte[] genCodeByTableName(BuildConfigDTO buildConfigDTO) {
+
+        if(buildConfigDTO.getBuildCodeType() == 1){
+            return genCodeSingle(buildConfigDTO);
+        }else{
+            return genCodeToFile(buildConfigDTO);
+        }
+    }
+
+    public byte[] genCodeSingle(BuildConfigDTO buildConfigDTO) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
 
         for (String tableName : buildConfigDTO.getTableName()) {
             //查询表信息
-           TableInfo table = tableInfoMapper.getOne(tableName);
+            TableInfo table = tableInfoMapper.getOne(tableName);
             //查询列信息
             List<ColumnInfo> columns = columnInfoMapper.listByTableName(tableName);
             //生成代码
@@ -40,6 +49,17 @@ public class SysGenServiceImpl implements SysGenService {
         }
         IOUtils.closeQuietly(zip);
         return outputStream.toByteArray();
+    }
 
+    public byte[] genCodeToFile(BuildConfigDTO buildConfigDTO) {
+        for (String tableName : buildConfigDTO.getTableName()) {
+            //查询表信息
+            TableInfo table = tableInfoMapper.getOne(tableName);
+            //查询列信息
+            List<ColumnInfo> columns = columnInfoMapper.listByTableName(tableName);
+            //生成代码
+            GenUtil.generatorCode(buildConfigDTO,table, columns, null);
+        }
+        return null;
     }
 }

@@ -4,6 +4,7 @@ package com.yhcoo.common.util;
 import com.yhcoo.common.exception.MdspException;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -64,6 +65,12 @@ public abstract class Assert {
 
     public static void isBlank(Number number, String message){
         if( number == null) {
+            throw new MdspException(message);
+        }
+    }
+
+    public static void isBlank(Date date, String message){
+        if(date==null) {
             throw new MdspException(message);
         }
     }

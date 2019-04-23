@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 public class BuildConfigDTO {
 
+    private int buildCodeType; //1:单表，2:多表
+
     private String genType;
 
     private List<String> tableName;

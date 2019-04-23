@@ -239,6 +239,7 @@ public class GenUtil {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
         LocalDateTime now = LocalDateTime.now();
+
         // 封装模板数据
         Map<String, Object> map = new HashMap<>();
         map.put("ids", getIdList());
@@ -263,12 +264,17 @@ public class GenUtil {
             //直接写入文件文件
             fileEntry(sw,tableConfig,filePath);
 
-//            //压缩文件
-            zipEntry(zip,sw,tableConfig,filePath);
+            //压缩文件
+            if(buildConfigDTO.getBuildCodeType() == 1){
+                zipEntry(zip,sw,tableConfig,filePath);
+            }
 
         }
 
     }
+
+
+
 
     /**
      * 首字母转小写

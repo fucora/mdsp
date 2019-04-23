@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 13/04/2019 12:02:18
+ Date: 16/04/2019 15:59:58
 */
 
 SET NAMES utf8mb4;
@@ -64,7 +64,7 @@ CREATE TABLE `sys_resource` (
   `url` varchar(128) DEFAULT NULL COMMENT '后端路径',
   `method` varchar(11) DEFAULT NULL COMMENT '请求方式',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1116634105528655881 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=1117154511079579656 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='资源表';
 
 -- ----------------------------
 -- Records of sys_resource
@@ -94,6 +94,7 @@ INSERT INTO `sys_resource` VALUES (31, '研发管理', '0', '/gen', '/gen', NULL
 INSERT INTO `sys_resource` VALUES (55, '消息管理', '0', '/tsc', '/tsc', NULL, -1, 'develop', 'Layout', 2, '2019-03-02 15:07:08', '2019-03-03 22:32:28', '0', '', NULL);
 INSERT INTO `sys_resource` VALUES (57, '消息处理', '0', 'msg', '/tsc/msg', NULL, 55, 'code', 'views/msg/index', 1, '2019-03-02 15:16:38', '2019-03-03 22:25:23', '0', '/tsc/msg/**', 'POST');
 INSERT INTO `sys_resource` VALUES (61, '代码生成', '0', 'code', '/gen/code', NULL, 31, 'code', 'views/gen/code/index', 1, '2019-03-03 17:55:21', '2019-04-07 10:50:10', '0', '/gen/code/**', 'GET');
+INSERT INTO `sys_resource` VALUES (62, '查看异常', '0', 'exception', '/syslog/exception', NULL, 64, 'rizhiguanli', 'views/admin/log/exception', 1, '2017-11-20 14:06:22', '2019-04-14 01:00:31', '0', '/syslog/log/*', 'GET');
 INSERT INTO `sys_resource` VALUES (63, '查看日志', '0', 'log', '/syslog/log', NULL, 64, 'rizhiguanli', 'views/admin/log/index', 1, '2017-11-20 14:06:22', '2019-03-03 22:32:10', '0', '/syslog/log/*', 'GET');
 INSERT INTO `sys_resource` VALUES (64, '日志管理', '0', '/syslog', '/syslog', NULL, -1, 'rizhiguanli', 'Layout', 5, '2017-11-20 14:06:22', '2019-03-03 22:32:29', '0', '', NULL);
 INSERT INTO `sys_resource` VALUES (65, '数据库列', '0', 'sysGenDbConfig', '/gen/sysGenDbConfig', NULL, 31, 'yonghuguanli', 'views/gen/sysGenDbConfig/index', 2, '2017-11-02 22:24:37', '2019-04-07 18:44:04', '0', '', NULL);
@@ -169,6 +170,7 @@ INSERT INTO `sys_role_resource` VALUES (1, 31);
 INSERT INTO `sys_role_resource` VALUES (1, 55);
 INSERT INTO `sys_role_resource` VALUES (1, 57);
 INSERT INTO `sys_role_resource` VALUES (1, 61);
+INSERT INTO `sys_role_resource` VALUES (1, 62);
 INSERT INTO `sys_role_resource` VALUES (1, 63);
 INSERT INTO `sys_role_resource` VALUES (1, 64);
 INSERT INTO `sys_role_resource` VALUES (1, 65);

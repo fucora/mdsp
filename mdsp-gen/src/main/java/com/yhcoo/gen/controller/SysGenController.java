@@ -49,13 +49,23 @@ public class SysGenController {
     @ApiImplicitParam(name = "buildConfigDTO", value = "表配置", required = true, dataType = "BuildConfigDTO")
     @PostMapping("/code/build")
     public void code(@RequestBody BuildConfigDTO buildConfigDTO, HttpServletResponse response) throws IOException {
-
+        buildConfigDTO.setBuildCodeType(1);
         byte[] data = sysGenService.genCodeByTableName(buildConfigDTO);
         response.reset();
         response.setHeader("Content-Disposition", "attachment; filename=\"code.zip\"");
         response.addHeader("Content-Length", "" + data.length);
         response.setContentType("application/octet-stream; charset=UTF-8");
         IOUtils.write(data, response.getOutputStream());
+    }
+
+    @SysLog(serviceId = MdspServiceNameConstants.MDSP_GEN_SERVICE, moduleName = MODULE_NAME, actionName = "根据表名称生成代码  返回zip包")
+    @ApiOperation(value = "根据表名称生成代码", notes = "根据表名称生成代码  返回zip包", httpMethod = "POST")
+    @ApiImplicitParam(name = "buildConfigDTO", value = "表配置", required = true, dataType = "BuildConfigDTO")
+    @PostMapping("/code/buildall")
+    public ApiResult codeBuildAll(@RequestBody BuildConfigDTO buildConfigDTO) {
+        buildConfigDTO.setBuildCodeType(2);
+        sysGenService.genCodeByTableName(buildConfigDTO);
+        return new ApiResult<>(null,"代码已经写入项目");
     }
 
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 11/04/2019 00:03:59
+ Date: 16/04/2019 16:00:37
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_gen_db_config`;
 CREATE TABLE `sys_gen_db_config` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `host` varchar(32) NOT NULL COMMENT '数据库地址',
   `port` varchar(32) NOT NULL COMMENT '数据库端口',
   `db_type` varchar(32) NOT NULL COMMENT '数据库类型',

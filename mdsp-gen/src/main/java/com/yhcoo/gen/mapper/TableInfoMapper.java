@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yhcoo.gen.model.entity.TableInfo;
 import com.yhcoo.gen.model.query.TableInfoQuery;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public interface TableInfoMapper extends BaseMapper<TableInfo> {
 
     /**
